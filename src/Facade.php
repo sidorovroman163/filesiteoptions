@@ -1,4 +1,4 @@
-<?php namespace sidorovroman\filesiteoptions;
+<?php namespace SidorovRoman\FileSiteOptions;
 
 class Facade extends \Illuminate\Support\Facades\Facade
 {

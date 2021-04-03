@@ -1,11 +1,9 @@
 <?php
 
-namespace sidorovroman\filesiteoptions;
+namespace SidorovRoman\FileSiteOptions;
 
 use App;
 use Illuminate\Support\ServiceProvider;
-use SidorovRoman\FileSiteOptions\Repository;
-
 class FileSiteOptionsProvider extends ServiceProvider
 {
     /**
