@@ -16,7 +16,7 @@ class Repository
      */
     public function __construct()
     {
-        $this->file_path = base_path('/vendor/sidorovroman/file-site-options/fileSiteOptions.json');
+        $this->file_path = base_path('/vendor/sidorovroman/filesiteoptions/fileSiteOptions.json');
     }
 
     /**
