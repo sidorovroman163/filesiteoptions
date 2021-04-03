@@ -1,6 +1,6 @@
 <?php
 
-namespace SidorovRoman\FileSiteOptions;
+namespace sidorovroman\filesiteoptions;
 
 use App;
 use Illuminate\Support\ServiceProvider;

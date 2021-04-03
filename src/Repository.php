@@ -1,4 +1,4 @@
-<?php namespace SidorovRoman\FileSiteOptions;
+<?php namespace sidorovroman\filesiteoptions;
 
 use App;
 
@@ -16,7 +16,7 @@ class Repository
      */
     public function __construct()
     {
-        $this->file_path = base_path('/vendor/sidorovroman/FileSiteOptions/fileSiteOptions.json');
+        $this->file_path = base_path('/vendor/sidorovroman/filesiteoptions/fileSiteOptions.json');
     }
 
     /**
