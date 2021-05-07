@@ -9,7 +9,7 @@
             "email": "sidorovroman163@gmail.com"
         }
     ],
-    "version": "1.2.1",
+    "version": "1.2.2",
     "autoload": {
         "psr-4": {
             "SidorovRoman\\FileSiteOptions\\": "src/"

@@ -2,6 +2,7 @@
 
 use App;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Storage;
 
 class Repository
 {
@@ -17,7 +18,16 @@ class Repository
      */
     public function __construct()
     {
-        $this->file_path = base_path('/vendor/sidorovroman/filesiteoptions/fileSiteOptions.json');
+        $path         = $this->file_path = storage_path('/app/sidorovroman/fileSiteOptions.json');
+        $storage_path = '/sidorovroman/fileSiteOptions.json';
+        $tmp_path     = base_path('/vendor/sidorovroman/filesiteoptions/fileSiteOptions.json');
+
+        $isExists = Storage::exists($storage_path);
+
+        if (!$isExists) {
+            $json  = file_get_contents($tmp_path);
+            Storage::put($storage_path, $json);
+        }
     }
 
     /**
@@ -29,10 +39,10 @@ class Repository
     public function set($key, $value)
     {
         try {
-            $json = file_get_contents($this->file_path);
+            $json  = file_get_contents($this->file_path);
             $array = json_decode($json, true);
 
-            array_set($array, $key, $value);
+            Arr::set($array, $key, $value);
 
             file_put_contents($this->file_path, json_encode($array));
         } catch (\Exception $ex) {
@@ -49,7 +59,7 @@ class Repository
     public function get($key)
     {
         try {
-            $json = file_get_contents($this->file_path);
+            $json  = file_get_contents($this->file_path);
             $array = json_decode($json, true);
 
             return Arr::get($array, $key);
@@ -67,10 +77,10 @@ class Repository
     public function dell($key)
     {
         try {
-            $json = file_get_contents($this->file_path);
+            $json  = file_get_contents($this->file_path);
             $array = json_decode($json, true);
 
-            array_forget($array, $key);
+            Arr::forget($array, $key);
 
             file_put_contents($this->file_path, json_encode($array));
         } catch (\Exception $ex) {
