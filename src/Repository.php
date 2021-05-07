@@ -1,6 +1,7 @@
 <?php namespace SidorovRoman\FileSiteOptions;
 
 use App;
+use Illuminate\Support\Arr;
 
 class Repository
 {
@@ -30,9 +31,9 @@ class Repository
         try {
             $json = file_get_contents($this->file_path);
             $array = json_decode($json, true);
-            
+
             array_set($array, $key, $value);
-            
+
             file_put_contents($this->file_path, json_encode($array));
         } catch (\Exception $ex) {
             throw new \Exception('Проверьте наличие файла \fileSiteOptions.json!');
@@ -51,7 +52,7 @@ class Repository
             $json = file_get_contents($this->file_path);
             $array = json_decode($json, true);
 
-            return array_get($array, $key);
+            return Arr::get($array, $key);
         } catch (\Exception $ex) {
             throw new \Exception('Проверьте наличие файла \fileSiteOptions.json!');
         }
@@ -68,9 +69,9 @@ class Repository
         try {
             $json = file_get_contents($this->file_path);
             $array = json_decode($json, true);
-            
+
             array_forget($array, $key);
-            
+
             file_put_contents($this->file_path, json_encode($array));
         } catch (\Exception $ex) {
             throw new \Exception('Проверьте наличие файла \fileSiteOptions.json!');
