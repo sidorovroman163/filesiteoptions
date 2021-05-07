@@ -12,6 +12,7 @@ class Repository
      * @var string
      */
     protected $file_path;
+    protected $tmp_path;
 
     /**
      * @return void
@@ -20,12 +21,12 @@ class Repository
     {
         $path         = $this->file_path = storage_path('/app/sidorovroman/fileSiteOptions.json');
         $storage_path = '/sidorovroman/fileSiteOptions.json';
-        $tmp_path     = base_path('/vendor/sidorovroman/filesiteoptions/fileSiteOptions.json');
+        $tmp_path     = $this->tmp_path = base_path('/vendor/sidorovroman/filesiteoptions/fileSiteOptions.json');
 
         $isExists = Storage::exists($storage_path);
 
         if (!$isExists) {
-            $json  = file_get_contents($tmp_path);
+            $json = file_get_contents($tmp_path);
             Storage::put($storage_path, $json);
         }
     }
@@ -45,6 +46,7 @@ class Repository
             Arr::set($array, $key, $value);
 
             file_put_contents($this->file_path, json_encode($array));
+            file_put_contents($this->tmp_path, json_encode($array));
         } catch (\Exception $ex) {
             throw new \Exception('Проверьте наличие файла \fileSiteOptions.json!');
         }
@@ -83,6 +85,7 @@ class Repository
             Arr::forget($array, $key);
 
             file_put_contents($this->file_path, json_encode($array));
+            file_put_contents($this->tmp_path, json_encode($array));
         } catch (\Exception $ex) {
             throw new \Exception('Проверьте наличие файла \fileSiteOptions.json!');
         }
